@@ -1,50 +1,91 @@
-# React + TypeScript + Vite
+# DialogueX - Web and Android Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the source code for the DialogueX application, including both the web version (built with React and Vite) and the configuration for building an Android application using Capacitor.
 
-Currently, two official plugins are available:
+## Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+DialogueX is a communication platform featuring:
+*   Real-time chat
+*   AI-powered chat features
+*   User feeds
+*   Story viewing
+*   Live streaming capabilities
+*   User profiles
 
-## Expanding the ESLint configuration
+This project combines a web frontend with Capacitor integration to enable deployment as a native Android app.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Setup Instructions
 
-- Configure the top-level `parserOptions` property like this:
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/SoNSoN2007/dialoguex.git
+    cd dialoguex
+    ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2.  **Install dependencies:**
+    Make sure you have Node.js (v16+) and npm/yarn installed.
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Building the Application
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Web Version
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1.  **Run development server:**
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
+
+2.  **Build for production:**
+    ```bash
+    npm run build
+    # or
+    yarn build
+    ```
+    The production files will be located in the `dist` directory.
+
+### Android Version (using Capacitor)
+
+Building the Android version requires a local Android development environment (Android Studio, Android SDK, NDK).
+
+1.  **Ensure web assets are built:**
+    ```bash
+    npm run build
+    ```
+
+2.  **Sync Capacitor:**
+    ```bash
+    npx cap sync android
+    ```
+
+3.  **Build the Android App (APK/AAB):**
+    Detailed steps for setting up your environment (installing Android Studio, SDK, NDK, configuring `local.properties`) and building the APK/AAB (debug and release) are provided in the separate guide: `dialoguex_amazon_appstore_guide.md` (which was previously sent).
+
+    In summary, after setting up your environment, you would typically run:
+    ```bash
+    cd android
+    ./gradlew assembleDebug  # For debug APK
+    # or
+    ./gradlew assembleRelease # For release APK (requires signing setup)
+    cd ..
+    ```
+
+4.  **Open in Android Studio:**
+    ```bash
+    npx cap open android
+    ```
+
+## Deployment
+
+*   **Web:** The `dist` folder can be deployed to any static web hosting service.
+*   **Android:** The generated APK/AAB file can be submitted to the Google Play Store or Amazon App Store by following their respective guidelines (refer to `dialoguex_amazon_appstore_guide.md` for Amazon-specific steps).
+
+## Previously Deployed Web Link
+
+A web version was previously deployed to `https://icwthmkn.manus.space/`. Please note that this deployment might be temporary and could become inactive.
+
